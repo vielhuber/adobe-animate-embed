@@ -18,7 +18,9 @@ embed canvas animations generated with adobe animate the way it should be.
 
 ### directly
 
+```html
 <script src="adobe-animate-embed.min.js"></script>
+```
 
 ### library
 
@@ -32,10 +34,9 @@ import aae from 'adobe-animate-embed';
 
 ## usage
 
--   create an animation in adobe animate of the type [html5 canvas](https://helpx.adobe.com/animate/using/creating-publishing-html5-canvas-document.html)
--   publish the animation with the default values into e.g. /data/animation1/
+first create an animation in adobe animate of type [html5 canvas](https://helpx.adobe.com/animate/using/creating-publishing-html5-canvas-document.html) and publish the animation with the default values into e.g. /data/animation1/.
 
-prepare an empty container:
+now prepare an empty container:
 
 ```html
 <div class="anim1"></div>
