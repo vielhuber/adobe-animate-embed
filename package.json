@@ -1,7 +1,7 @@
 {
     "name": "adobe-animate-embed",
-    "version": "1.0.1",
-    "main": "_build/bundle.js",
+    "version": "1.0.2",
+    "main": "_build/script.js",
     "files": [
         "_build/*.js",
         "adobe-animate-embed.min.js"
