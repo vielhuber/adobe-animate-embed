@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
+        <title>.</title>
+        <script src="../adobe-animate-embed.min.js"></script>
+        <script>
+            window.addEventListener('load', function () {
+                let a = [];
+                [].forEach.call(document.querySelectorAll('.anim'), function (el) {
+                    a.push(new aae(el, el.getAttribute('data-path')));
+                });
+
+                a[0].hover();
+
+                document.querySelector('.ctrl--start00').addEventListener('click', function (e) {
+                    a[1].start(false, false);
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--start01').addEventListener('click', function (e) {
+                    a[1].start(false, true);
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--start10').addEventListener('click', function (e) {
+                    a[1].start(true, false);
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--start11').addEventListener('click', function (e) {
+                    a[1].start(true, true);
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--start110').addEventListener('click', function (e) {
+                    a[1].start(true, true, false);
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--hover').addEventListener('click', function (e) {
+                    a[1].hover();
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--destroy').addEventListener('click', function (e) {
+                    a[1].destroy();
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--pause').addEventListener('click', function (e) {
+                    a[1].pause();
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--resume').addEventListener('click', function (e) {
+                    a[1].resume();
+                    e.preventDefault();
+                });
+                document.querySelector('.ctrl--stop').addEventListener('click', function (e) {
+                    a[1].stop();
+                    e.preventDefault();
+                });
+
+                a[2].start();
+                a[3].start();
+                a[4].start();
+                a[5].start();
+            });
+        </script>
+        <style>
+            body {
+                background-color: #eee;
+            }
+            .anim {
+                max-width: 100%;
+                box-shadow: 1px 1px 1px 1px red;
+                margin: 20px 0;
+            }
+            .anim--1 {
+                width: 200px;
+            }
+            .anim--2 {
+                width: 300px;
+            }
+            .anim--3 {
+                width: 400px;
+            }
+            .anim--4 {
+                width: 500px;
+            }
+            .anim--5 {
+                width: 600px;
+            }
+            .anim--6 {
+                width: 700px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>hover example</h2>
+        <div class="anim anim--1" data-path="data/animation1/animation1.js"></div>
+
+        <h2>control example</h2>
+        <a href="#" class="ctrl ctrl--start00">start (no loop, no rewind)</a> -
+        <a href="#" class="ctrl ctrl--start01">start (no loop, rewind)</a> -
+        <a href="#" class="ctrl ctrl--start10">start (loop, no rewind)</a> -
+        <a href="#" class="ctrl ctrl--start11">start (loop, rewind)</a> -
+        <a href="#" class="ctrl ctrl--start110">start (loop, rewind, no autoplay)</a> -
+        <a href="#" class="ctrl ctrl--hover">hover</a> - <a href="#" class="ctrl ctrl--destroy">destroy</a> -
+        <a href="#" class="ctrl ctrl--pause">pause</a> - <a href="#" class="ctrl ctrl--resume">resume</a> -
+        <a href="#" class="ctrl ctrl--stop">stop</a>
+        <div class="anim anim--2" data-path="data/animation1/animation1.js"></div>
+
+        <h2>other examples</h2>
+        <div
+            class="anim anim--3"
+            data-path="http://adobe-animate-embed.local.vielhuber.de/_tests/data/animation1/animation1.js"
+        ></div>
+        <div class="anim anim--4" data-path="data/animation2/animation2.js"></div>
+        <div class="anim anim--5" data-path="data/animation3/animation3.js"></div>
+        <div class="anim anim--6" data-path="data/animation4/animation4.js"></div>
+    </body>
+</html>
