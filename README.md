@@ -42,7 +42,7 @@ now prepare an empty container:
 <div class="anim1"></div>
 ```
 
-now instantiate the animation by referencing the js file from the folder created above:
+instantiate the animation by referencing the js file from the folder created above:
 
 ```js
 let a1 = new aae(
