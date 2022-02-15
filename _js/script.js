@@ -269,6 +269,10 @@ export default class AdobeAnimateEmbed {
     }
 
     modifyCodeAndRun(code) {
+        let originalName = code.match(/\/\/ stage content(?:.*)(?:\r\n|\r|\n)\(lib\.(.+) =/);
+        if( originalName !== null ) {
+            code = code.split('lib.'+originalName[1]).join('lib.'+this.name);
+        }
         code = code.split('src:"images').join('src:"' + this.base + 'images');
         code = code.split('stage.').join("window.animatecc['" + this.id + "'].stage.");
         code = code.split('exportRoot.').join("window.animatecc['" + this.id + "'].exportRoot.");
