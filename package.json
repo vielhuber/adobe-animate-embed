@@ -1,6 +1,6 @@
 {
     "name": "adobe-animate-embed",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "main": "_build/script.js",
     "files": [
         "_build/*.js",

@@ -2,8 +2,11 @@ export default class AdobeAnimateEmbed {
     constructor(el, path) {
         this.el = el;
         this.path = path;
-        this.name = this.path.split('/')[this.path.split('/').length - 1].replace('.js', '');
-        this.base = this.path.replace(this.name + '.js', '');
+        this.name = this.path
+            .split('/')
+            [this.path.split('/').length - 1].replace('.js', '')
+            .replace(/[^a-zA-Z]/, '_');
+        this.base = this.path.replace(this.path.split('/')[this.path.split('/').length - 1], '');
         this.id = null;
         this.started = false;
         this.loop = null;
@@ -270,8 +273,8 @@ export default class AdobeAnimateEmbed {
 
     modifyCodeAndRun(code) {
         let originalName = code.match(/\/\/ stage content(?:.*)(?:\r\n|\r|\n)\(lib\.(.+) =/);
-        if( originalName !== null ) {
-            code = code.split('lib.'+originalName[1]).join('lib.'+this.name);
+        if (originalName !== null) {
+            code = code.split('lib.' + originalName[1]).join('lib.' + this.name);
         }
         code = code.split('src:"images').join('src:"' + this.base + 'images');
         code = code.split('stage.').join("window.animatecc['" + this.id + "'].stage.");
