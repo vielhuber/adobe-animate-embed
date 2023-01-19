@@ -10,17 +10,19 @@ export default class AdobeAnimateEmbed {
         this.id = null;
         this.started = false;
         this.loop = null;
+        this.speed = null;
         this.reversed = null;
         this.play = null;
         this.setup();
     }
 
-    start(loop = null, reversed = null, play = true, removeHoverEventListeners = false) {
+    start(loop = null, reversed = null, play = true, speed = 1, removeHoverEventListeners = false) {
         this.destroy(false, removeHoverEventListeners);
         this.createNewId();
 
         this.started = true;
         this.loop = loop;
+        this.speed = speed;
         this.reversed = reversed;
         this.play = play;
 
@@ -79,7 +81,7 @@ export default class AdobeAnimateEmbed {
     }
 
     hover() {
-        this.start(false, false, false, true);
+        this.start(false, false, false, null, true);
         this.hoverFnInBind = this.hoverFnIn.bind(this);
         this.el.addEventListener('mouseover', this.hoverFnInBind);
         this.hoverFnOutBind = this.hoverFnOut.bind(this);
@@ -116,7 +118,7 @@ export default class AdobeAnimateEmbed {
                 if (started === true) {
                     window.clearInterval(this.el.timeoutIn);
                     this.el.timeoutIn = undefined;
-                    this.start(false, false, true, false);
+                    this.start(false, false, true, null, false);
                 }
             }, 30);
         }
@@ -141,7 +143,7 @@ export default class AdobeAnimateEmbed {
                 if (ended === true) {
                     window.clearInterval(this.el.timeoutOut);
                     this.el.timeoutOut = undefined;
-                    this.start(false, true, true, false);
+                    this.start(false, true, true, null, false);
                 }
             }, 30);
         }
@@ -319,6 +321,14 @@ export default class AdobeAnimateEmbed {
             code = code
                 .split('if (reversed == null) { reversed = true; }')
                 .join('if (reversed == null) { reversed = ' + this.reversed + '; }');
+        }
+        if (this.speed !== null && this.speed !== undefined && this.speed != 1) {
+            let speed_match = code.match(/fps: ([0-9]+),/);
+            if( speed_match !== null ) {
+                code = code
+                    .split('fps: '+speed_match[1]+',')
+                    .join('fps: '+(speed_match[1]*this.speed)+',');
+            }
         }
 
         let script = document.createElement('script');

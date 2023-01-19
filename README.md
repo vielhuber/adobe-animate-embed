@@ -11,7 +11,7 @@ embed canvas animations generated with adobe animate the way it should be.
 -   simple caching mechanism when loading published files from adobe animate
 -   control loop, rewind and play/pause
 -   embedding of multiple animations (from the same source) on the same page
--   different fps in different animations
+-   different fps in different animations, also manually modify speed
 -   full ie11 support
 
 ## installation
@@ -77,6 +77,12 @@ a1.start(null, true); // run backwards
 ```js
 a1.start(null, null, false); // no autoplay
 a1.resume();
+```
+
+you can manually adjust the speed of an animation:
+
+```js
+a1.start(null, null, null, 2); // play at double speed
 ```
 
 often you want an animation to play when hovering an element and rewind when unhovering.\
