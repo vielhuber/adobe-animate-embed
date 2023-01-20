@@ -5,7 +5,8 @@ export default class AdobeAnimateEmbed {
         this.name = this.path
             .split('/')
             [this.path.split('/').length - 1].replace('.js', '')
-            .replace(/[^a-zA-Z]/, '_');
+            .replace(/[^a-zA-Z]/, '_')
+            .replace(/-/, '_');
         this.base = this.path.replace(this.path.split('/')[this.path.split('/').length - 1], '');
         this.id = null;
         this.started = false;
@@ -281,17 +282,15 @@ export default class AdobeAnimateEmbed {
         code = code.split('src:"images').join('src:"' + this.base + 'images');
         code = code.split('stage.').join("window.animatecc['" + this.id + "'].stage.");
         code = code.split('exportRoot.').join("window.animatecc['" + this.id + "'].exportRoot.");
-        code = code
-            .split('})(createjs = createjs||{}, AdobeAn = AdobeAn||{});')
-            .join(
-                "\
+        code = code.split('})(createjs = createjs||{}, AdobeAn = AdobeAn||{});').join(
+            "\
                 window.animatecc['" +
-                    this.id +
-                    "'].props = lib.properties;\
+                this.id +
+                "'].props = lib.properties;\
             })(createjs, window.animatecc['" +
-                    this.id +
-                    "'].AdobeAn);"
-            );
+                this.id +
+                "'].AdobeAn);"
+        );
         code = code.split('var createjs, AdobeAn;').join('');
         code = code
             .split('var iw = window.innerWidth, ih=window.innerHeight;')
@@ -324,10 +323,8 @@ export default class AdobeAnimateEmbed {
         }
         if (this.speed !== null && this.speed !== undefined && this.speed != 1) {
             let speed_match = code.match(/fps: ([0-9]+),/);
-            if( speed_match !== null ) {
-                code = code
-                    .split('fps: '+speed_match[1]+',')
-                    .join('fps: '+(speed_match[1]*this.speed)+',');
+            if (speed_match !== null) {
+                code = code.split('fps: ' + speed_match[1] + ',').join('fps: ' + speed_match[1] * this.speed + ',');
             }
         }
 
