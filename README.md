@@ -34,7 +34,7 @@ import aae from 'adobe-animate-embed';
 
 ## usage
 
-first create an animation in adobe animate of type [html5 canvas](https://helpx.adobe.com/animate/using/creating-publishing-html5-canvas-document.html) and publish the animation with the default values into e.g. /data/animation1/.
+first create an animation in adobe animate of type [html5 canvas](https://helpx.adobe.com/animate/using/creating-publishing-html5-canvas-document.html) and publish the animation with the default values into e.g. /data/animation1/. for more information look at this [blog article](https://vielhuber.de/blog/adobe-animate-animationen-nativ-einbinden/).
 
 now prepare an empty container:
 
