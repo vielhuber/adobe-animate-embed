@@ -99,3 +99,7 @@ a1.stop();
 a1.pause();
 a1.destroy();
 ```
+
+## caveats
+
+- easing functions such as "elastic" are not cleanly supported by Animate CC after the export
