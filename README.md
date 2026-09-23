@@ -4,15 +4,15 @@ embed canvas animations generated with adobe animate the way it should be.
 
 ## supports
 
--   fully responsive to the parent container
--   full or partly transparent backgrounds
--   auto play and rewind on mouse over and out
--   no need to manually embed createjs (e.g. from an external cdn)
--   simple caching mechanism when loading published files from adobe animate
--   control loop, rewind and play/pause
--   embedding of multiple animations (from the same source) on the same page
--   different fps in different animations, also manually modify speed
--   full ie11 support
+- fully responsive to the parent container
+- full or partly transparent backgrounds
+- auto play and rewind on mouse over and out
+- no need to manually embed createjs (e.g. from an external cdn)
+- simple caching mechanism when loading published files from adobe animate
+- control loop, rewind and play/pause
+- embedding of multiple animations (from the same source) on the same page
+- different fps in different animations, also manually modify speed
+- modern browsers (Vite's default browser targets; no IE11 support)
 
 ## installation
 
