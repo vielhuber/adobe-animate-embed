@@ -305,21 +305,22 @@ export default class AdobeAnimateEmbed {
             );
         code = code.split('yRatio=ih/h').join('yRatio=xRatio');
 
-        if (this.loop !== null) {
-            code = code
-                .split('if (loop == null) { loop = false; }')
-                .join('if (loop == null) { loop = ' + this.loop + '; }');
-            code = code
-                .split('if (loop == null) { loop = true; }')
-                .join('if (loop == null) { loop = ' + this.loop + '; }');
-        }
-        if (this.reversed !== null) {
-            code = code
-                .split('if (reversed == null) { reversed = false; }')
-                .join('if (reversed == null) { reversed = ' + this.reversed + '; }');
-            code = code
-                .split('if (reversed == null) { reversed = true; }')
-                .join('if (reversed == null) { reversed = ' + this.reversed + '; }');
+        for (const option of ['loop', 'reversed']) {
+            const value = this[option];
+
+            if (value === null) {
+                continue;
+            }
+            if (typeof value !== 'boolean') {
+                throw new TypeError(`${option} must be a boolean or null`);
+            }
+
+            const literal = value ? 'true' : 'false';
+            for (const defaultValue of ['false', 'true']) {
+                code = code
+                    .split(`if (${option} == null) { ${option} = ${defaultValue}; }`)
+                    .join(`if (${option} == null) { ${option} = ${literal}; }`);
+            }
         }
         if (this.speed !== null && this.speed !== undefined && this.speed != 1) {
             let speed_match = code.match(/fps: ([0-9]+),/);
